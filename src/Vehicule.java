@@ -1,7 +1,4 @@
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Vehicule {
@@ -26,6 +23,14 @@ public class Vehicule {
         this.colis.addAll(colisACharger);
 
         colisACharger.forEach(colis -> colisALivrer.remove(colis.getTracking()));
+    }
+
+    public Colis rechercherColis(String tracking) {
+        Optional<Colis> colisRecherche = this.colis.stream()
+                .filter(colis -> colis.getTracking().equals(tracking))
+                .findFirst();
+
+        return colisRecherche.orElse(null);
     }
 
     public int getId() {

@@ -4,8 +4,10 @@ import java.util.List;
 public class Route {
 
     private List<String> villes;
+    private String nomDeRoute;
 
-    public Route() {
+    public Route(String nomDeRoute) {
+        this.nomDeRoute = nomDeRoute;
         this.villes = new ArrayList<>();
     }
 
@@ -15,5 +17,9 @@ public class Route {
 
     public boolean estSurRoute(String ville) {
         return this.villes.stream().anyMatch(currentVile -> currentVile.equals(ville));
+    }
+
+    public String getNomDeRoute() {
+        return nomDeRoute;
     }
 }

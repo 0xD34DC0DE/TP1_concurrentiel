@@ -9,6 +9,7 @@ public class Vehicule {
 
     public Vehicule(int id) {
         this.id = id;
+        this.colis = new LinkedList<>();
     }
 
     public void charger(HashMap<String, Colis> colisALivrer, Route route) {
@@ -31,13 +32,5 @@ public class Vehicule {
                 .findFirst();
 
         return colisRecherche.orElse(null);
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 }

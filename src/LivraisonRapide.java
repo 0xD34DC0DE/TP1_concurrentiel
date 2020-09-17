@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Objects;
 
 public class LivraisonRapide {
@@ -31,14 +32,18 @@ public class LivraisonRapide {
         return this.colis.get(tracking);
     }
 
-    public Colis rechercherColisDansVehicule(String tracking) {
+    public Vehicule rechercherColisDansVehicule(String tracking) {
         return this.vehicules
                 .stream()
-                .map(vehicule -> vehicule.rechercherColis(tracking))
-                .filter(Objects::nonNull)
+                .filter(vehicule -> vehicule.rechercherColis(tracking) != null)
                 .findFirst()
                 .orElse(null);
     }
 
-
+    public void chargerColis() {
+        if(this.routes.values().size() <= this.vehicules.size()) {
+            Iterator<Vehicule> iterateurVehicule = this.vehicules.iterator();
+            this.routes.values().forEach(route -> iterateurVehicule.next().charger(this.colis, route));
+        }
+    }
 }
